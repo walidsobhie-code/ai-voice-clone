@@ -2,18 +2,21 @@
 
 Clone any voice with AI using advanced TTS models. Create personalized voice synthesis with just a few seconds of audio.
 
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Stars](https://img.shields.io/github/stars/walidsobhie-code/ai-voice-clone)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/walidsobhie-code/ai-voice-clone)](https://github.com/walidsobhie-code/ai-voice-clone/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/walidsobhie-code/ai-voice-clone)](https://github.com/walidsobhie-code/ai-voice-clone/commits)
 
-## Why This Repo?
+> 🏆 Inspired by [VibeVoice](https://github.com/microsoft/VibeVoice) - 28k+ stars today!
 
-Voice AI is exploding! Projects like Microsoft's VibeVoice hit **28k stars today**. This tool lets anyone clone voices easily.
+## Why Voice AI is Trending 🔥
+
+Voice cloning is exploding! From content creation to accessibility, voice AI is revolutionizing how we communicate. This starter kit helps you build voice cloning apps quickly.
 
 ## ✨ Features
 
 - 🎯 **Voice Cloning** - Clone voice from 10-30 seconds of audio
-- 🌍 **Multi-language** - Support for English, Arabic, Spanish, French, German
+- 🌍 **Multi-language** - English, Arabic, Spanish, French, German
 - ⚡ **Fast Processing** - Generate speech in seconds
 - 🔊 **High Quality** - 44.1kHz output quality
 - 📦 **Easy CLI** - Simple command-line interface
@@ -51,6 +54,8 @@ librosa>=0.10.0
 soundfile>=0.12.0
 numpy>=1.24.0
 torch>=2.0.0
+tqdm>=4.65.0
+pydantic>=2.0.0
 ```
 
 ## 🤝 Contributing
@@ -68,3 +73,5 @@ If this helps you, please star the repo and share!
 ---
 
 **Made with ❤️ for the AI community**
+
+🌐 [walidsobhie-code](https://github.com/walidsobhie-code)
