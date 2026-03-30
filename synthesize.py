@@ -1,56 +1,28 @@
 #!/usr/bin/env python3
-"""
-AI Voice Synthesis - Generate speech with cloned voice
-"""
-import os
-import argparse
+"""AI Voice Synthesis - Using Ollama for text generation"""
+import sys
+import requests
 
-try:
-    from TTS.api import TTS
-    TTS_AVAILABLE = True
-except ImportError:
-    TTS_AVAILABLE = False
+OLLAMA_URL = "http://localhost:11434/api/generate"
+MODEL = "gemma3:1b"
 
-def synthesize(model_path: str, text: str, output: str = "output.wav", speed: float = 1.0) -> dict:
-    """Generate speech with cloned voice"""
-    if not TTS_AVAILABLE:
-        return {
-            "status": "template",
-            "message": "Install TTS: pip install TTS",
-            "model": model_path,
-            "text": text
-        }
-    
+def synthesize(text: str, output: str = "output.wav") -> dict:
+    # Ollama can't do actual TTS, but can generate script for it
+    prompt = f"Generate a short voiceover script for: {text}"
     try:
-        tts = TTS(model_name="xtts", progress_bar=True)
-        
-        print(f"🎤 Synthesizing: {text[:50]}...")
-        tts.tts_to_file(
-            text=text,
-            speaker_wav=model_path if os.path.exists(model_path) else None,
-            file_path=output,
-            speed=speed
+        response = requests.post(
+            OLLAMA_URL,
+            json={"model": MODEL, "prompt": prompt, "stream": False},
+            timeout=30
         )
-        
-        return {"status": "success", "output": output}
-    
+        if response.status_code == 200:
+            script = response.json().get("response", "")
+            return {"status": "success", "script": script[:200], "output": output}
     except Exception as e:
         return {"status": "error", "message": str(e)}
-
-def main():
-    parser = argparse.ArgumentParser(description="AI Voice Synthesis")
-    parser.add_argument("--model", "-m", default="cloned_voice.wav", help="Voice model file")
-    parser.add_argument("--text", "-t", required=True, help="Text to synthesize")
-    parser.add_argument("--output", "-o", default="output.wav", help="Output file")
-    parser.add_argument("--speed", "-s", type=float, default=1.0, help="Speech speed (0.5-2.0)")
-    args = parser.parse_args()
-    
-    result = synthesize(args.model, args.text, args.output, args.speed)
-    
-    if result["status"] == "success":
-        print(f"✅ Generated: {result['output']}")
-    else:
-        print(f"⚠️ {result.get('message', 'Error')}")
+    return {"status": "error", "message": "Ollama not running"}
 
 if __name__ == "__main__":
-    main()
+    text = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "Hello world"
+    result = synthesize(text)
+    print(f"✅ Generated: {result}")
