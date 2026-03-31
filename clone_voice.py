@@ -14,8 +14,20 @@ try:
 except ImportError:
     TTS_AVAILABLE = False
 
-def clone_voice(input_file: str, output_name: str) -> dict:
-    """Clone voice from audio sample"""
+# Supported languages for voice synthesis
+SUPPORTED_LANGUAGES = ["en", "ar", "es", "fr", "de", "it", "pt", "pl", "tr", "ru"]
+
+def clone_voice(input_file: str, output_name: str, language: str = "en") -> dict:
+    """Clone voice from audio sample
+
+    Args:
+        input_file: Path to audio sample (10-30 seconds)
+        output_name: Name for output file
+        language: Language code (default: en)
+
+    Returns:
+        dict with status, output, and message
+    """
     if not TTS_AVAILABLE:
         return {
             "status": "template",
@@ -23,29 +35,37 @@ def clone_voice(input_file: str, output_name: str) -> dict:
             "input": input_file,
             "output": output_name
         }
-    
+
     if not os.path.exists(input_file):
         return {"status": "error", "message": f"File not found: {input_file}"}
-    
+
+    # Validate language
+    if language not in SUPPORTED_LANGUAGES:
+        return {
+            "status": "error",
+            "message": f"Unsupported language: {language}. Supported: {', '.join(SUPPORTED_LANGUAGES)}"
+        }
+
     try:
         print(f"🎤 Loading audio: {input_file}")
         tts = TTS(model_name="xtts", progress_bar=True)
-        
+
         # Voice cloning
         output_path = f"{output_name}.wav"
-        print(f"🔄 Cloning voice...")
+        print(f"🔄 Cloning voice (language: {language})...")
         tts.tts_to_file(
             text="This is a test of the cloned voice.",
             speaker_wav=input_file,
-            file_path=output_path
+            file_path=output_path,
+            language=language
         )
-        
+
         return {
             "status": "success",
             "output": output_path,
             "message": f"Voice cloned successfully! Audio saved to {output_path}"
         }
-    
+
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
