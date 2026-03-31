@@ -3,11 +3,10 @@
 > **Clone any voice with AI** — Create personalized voice synthesis from just 10-30 seconds of audio. Powered by Coqui XTTS.
 
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
-
-[🚀 Try Live Demo](https://huggingface.co/spaces/my-ai-stack/ai-voice-clone)
-
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/walidsobhie-code/ai-voice-clone)](https://github.com/walidsobhie-code/ai-voice-clone/stargazers)
+
+[🚀 Try Live Demo](https://huggingface.co/spaces/my-ai-stack/ai-voice-clone)
 
 ## 🎯 What It Does
 
