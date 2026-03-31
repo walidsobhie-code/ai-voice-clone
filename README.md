@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/walidsobhie-code/ai-voice-clone)](https://github.com/walidsobhie-code/ai-voice-clone/stargazers)
 
-[🚀 Try Live Demo](https://huggingface.co/spaces/my-ai-stack/ai-voice-clone)
+[🤗 HuggingFace 🚀 Try Live Demo](https://huggingface.co/spaces/my-ai-stack/ai-voice-clone)
 
 ## 🎯 What It Does
 
