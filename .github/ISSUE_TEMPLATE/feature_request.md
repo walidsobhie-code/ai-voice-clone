@@ -1,0 +1,16 @@
+---
+name: Feature Request
+about: Suggest a new feature
+title: '[FEATURE] '
+labels: enhancement
+assignees: ''
+---
+
+## 🎯 Feature Description
+A clear description of the feature.
+
+## 💡 Use Case
+Why do you need this feature?
+
+## 🔧 Proposed Solution
+How should it work?
